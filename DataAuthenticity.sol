@@ -93,7 +93,20 @@ require(contState==contractState.WaitingToProvideApproval && (publishers[publish
   }
 
     }
+function traceBackHistory( address owner, address publisherAddress, address authorAddress ) public {
 
+ require(contState==contractState.WaitingToProvideApproval && (publishers[publisherAddress] == publisherState.ValidationSuccess));
+ if(recordList[publisherAddress] == true && approvedAuthors[publisherAddress] == true )
+ 
+   if(authorAddress == author) {
+        //event showing content is verified by the previous address 
+        ValidationHistorySuccess(publisherAddress,"The content is verified by:", authorAddress);
+    }
+   else {
+            FailedValidationHistory(publisherAddress,"The content is Not Verified by:", authorAddress);
+        }
+         
+  }
 }
 
 
